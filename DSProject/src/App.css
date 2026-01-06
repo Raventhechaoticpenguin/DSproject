@@ -1,3 +1,42 @@
+/* IconButton styles */
+.img-btn {
+  position: relative;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  width: 200px; /* ajuste conforme necessário */
+  height: 64px; /* ajuste conforme necessário */
+}
+
+.btnCol {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.img-btn img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.img-btn-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-weight: bold;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+  pointer-events: none;
+  font-size: 1em;
+  text-align: center;
+  width: 90%;
+}
 #root {
   max-width: 1280px;
   margin: 0 auto;
@@ -18,20 +57,6 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
 
 .card {
   padding: 2em;
