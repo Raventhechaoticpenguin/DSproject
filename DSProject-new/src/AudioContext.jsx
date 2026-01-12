@@ -6,14 +6,20 @@ import React, { createContext, useContext, useState, useRef, useEffect } from 'r
 import monsterMusicAudio from './assets/audios/MonsterJustMusic.wav';
 import monsterFoleyAudio from './assets/audios/MonsterJustSound.wav';
 import monsterAllAudio from './assets/audios/MonsterWEverything.wav';
-// import monsterVoiceAudio from './assets/audios/MonsterJustVoice.wav'; // <-- CRIE ESTE FICHEIRO E DESCOMENTE
+import everythingStaysMusicAudio from './assets/audios/ESMusic.wav';
+import everythingStaysFoleyAudio from './assets/audios/ambienteES.wav';
+import everythingStaysAllAudio from './assets/audios/tudoES.wav';
 
 const audioDatabase = {
     'monster': {
         all: monsterAllAudio,
         music: monsterMusicAudio,
         foley: monsterFoleyAudio,
-        // voice: monsterVoiceAudio, // <-- DESCOMENTE QUANDO TIVER O FICHEIRO
+    },
+    'everything-stays': {
+        all: everythingStaysAllAudio,
+        music: everythingStaysMusicAudio,
+        foley: everythingStaysFoleyAudio,
     }
 };
 

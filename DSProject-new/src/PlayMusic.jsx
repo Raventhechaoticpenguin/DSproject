@@ -7,15 +7,19 @@ import BackImage from './assets/Grass-Buttons-arrow3.png';
 import Star1 from './assets/Buttons-star1.png';
 import Star2 from './assets/Buttons-star2.png';
 import Star3 from './assets/Buttons-star3.png';
-import PlayPauseButton from './assets/base.png'; // Placeholder para o botão de play/pause
 import { useAudio } from './AudioContext';
 
 import monsterVideo from './assets/videos/monsterVid.mp4';
+import everythingStaysVideo from './assets/videos/ESVid.mp4';
 
 const musicDatabase = {
     'monster': {
         title: 'Monster',
         video: monsterVideo
+    },
+    'everything-stays': {
+        title: 'Everything Stays',
+        video: everythingStaysVideo
     }
 };
 
@@ -83,7 +87,7 @@ function PlayMusic() {
                     <video 
                         ref={videoRef} 
                         muted 
-                        controls // <-- CONTROLOS NATIVOS RESTAURADOS
+                        controls 
                         className="video-player"
                         onPlay={handlePlay}
                         onPause={handlePause}
