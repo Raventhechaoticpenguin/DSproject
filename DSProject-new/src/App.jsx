@@ -1,8 +1,8 @@
 import { Routes, Route, Link } from 'react-router-dom';
 import home from './assets/Buttons-house.png'
 import buttonPlay from './assets/base.png'
-import IconButton from './iconButton'
-import './App.css'
+import IconButton from './Buttons/iconButton'
+import './styling/App.css'
 import Play from './Play.jsx';
 import Mix from './Mix.jsx';
 
