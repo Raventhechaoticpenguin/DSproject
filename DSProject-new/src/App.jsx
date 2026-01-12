@@ -5,6 +5,7 @@ import IconButton from './Buttons/iconButton'
 import './styling/App.css'
 import Play from './Play.jsx';
 import Mix from './Mix.jsx';
+import PlayMusic from './PlayMusic.jsx';
 
 function Home() {
   return (
@@ -34,6 +35,7 @@ function App() {
       <Route path="/" element={<Home />} />
       <Route path="/play" element={<Play />} />
       <Route path="/mix" element={<Mix />} />
+      <Route path="/playmusic/:musicId" element={<PlayMusic />} />
     </Routes>
   );
 }

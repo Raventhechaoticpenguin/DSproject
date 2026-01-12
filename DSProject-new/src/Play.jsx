@@ -18,8 +18,12 @@ function Play(){
             <div className="play-container">
                 <h1>Choose a Music to Play:</h1>
                 <div className="PlayButtons">
-                    <MButton imgSrc={MImage} Text="Play Button">Monster from Adventure Time Distant Lands</MButton>
-                    <MButton imgSrc={ESImage} Text="Play Button">Everything Stays from Adventure Time</MButton>
+                    <Link to="/playmusic/monster">
+                        <MButton imgSrc={MImage} Text="Play Button">Monster from Adventure Time Distant Lands</MButton>
+                    </Link>
+                    <Link to="/playmusic/everything-stays">
+                        <MButton imgSrc={ESImage} Text="Play Button">Everything Stays from Adventure Time</MButton>
+                    </Link>
                 </div>
             </div>
         </>
