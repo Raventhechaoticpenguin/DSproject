@@ -4,6 +4,7 @@ import MButton from './Buttons/musicsButton.jsx'
 import './styling/musicsButton.css'
 import MImage from './assets/Monster.png'   
 import ESImage from './assets/ES.png'
+import GWImage from './assets/GW.png'
 import IImage from './assets/Buttons-house.png'
 import TButton from './Buttons/thingButtons.jsx'
 
@@ -23,6 +24,9 @@ function Play(){
                     </Link>
                     <Link to="/playmusic/everything-stays">
                         <MButton imgSrc={ESImage} Text="Play Button">Everything Stays from Adventure Time</MButton>
+                    </Link>
+                    <Link to="/playmusic/giant-woman">
+                        <MButton imgSrc={GWImage} Text="Play Button">Giant Woman from Steven Universe</MButton>
                     </Link>
                 </div>
             </div>

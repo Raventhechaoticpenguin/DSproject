@@ -11,6 +11,7 @@ import { useAudio } from './AudioContext';
 
 import monsterVideo from './assets/videos/monsterVid.mp4';
 import everythingStaysVideo from './assets/videos/ESVid.mp4';
+import gwVideo from './assets/videos/GWVid.mp4';
 
 const musicDatabase = {
     'monster': {
@@ -20,6 +21,10 @@ const musicDatabase = {
     'everything-stays': {
         title: 'Everything Stays',
         video: everythingStaysVideo
+    },
+    'giant-woman': {
+        title: 'Giant Woman',
+        video: gwVideo
     }
 };
 
