@@ -5,17 +5,18 @@
   border: none;
   padding: 0;
   cursor: pointer;
-  width: 200px; /* ajuste conforme necessário */
-  height: 64px; /* ajuste conforme necessário */
+  width: 260px;
+  height: 90px;
 }
 
 .btnCol {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
   justify-content: center;
   align-items: center;
-  margin-bottom: 2rem;
+  margin: 0 auto;
+  min-height: 50vh;
 }
 
 .img-btn img {
@@ -27,13 +28,12 @@
 .img-btn-text {
   position: absolute;
   top: 50%;
-  left: 50%;
   transform: translate(-50%, -50%);
-  color: white;
-  font-weight: bold;
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+  color: #000;
+  font-weight: 800;
+  
   pointer-events: none;
-  font-size: 1em;
+  font-size: 1.6em;
   text-align: center;
   width: 90%;
 }
@@ -42,6 +42,7 @@
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
 }
 
 .logo {
@@ -50,18 +51,11 @@
   will-change: filter;
   transition: filter 300ms;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
 
 
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+h1,
+h2,
+p {
+  color: #000;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
 }

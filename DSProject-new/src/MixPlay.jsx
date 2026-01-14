@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useTransitions } from './TransitionContext';
 import './styling/PlayMusic.css';
@@ -7,6 +7,8 @@ import IImage from './assets/Buttons-house.png';
 import TButton from './Buttons/thingButtons.jsx';
 import TTButton from './Buttons/transitionButton.jsx';
 import buttonPlay from './assets/base.png'
+import QButton from './assets/Buttons-question.png';
+import BackImage from './assets/Grass-Buttons-arrow3.png';
 
 
 import monsterVideo from './assets/videos/monsterVid.mp4';
@@ -32,6 +34,12 @@ function MixPlay() {
     } = useTransitions();
     
     const videoRef = useRef(null);
+    const [showHelp, setShowHelp] = useState(false);
+
+    const openHelp = () => setShowHelp(true);
+    const closeHelp = () => setShowHelp(false);
+    const handleOverlayClick = () => closeHelp();
+    const handleModalClick = (event) => event.stopPropagation();
 
     // Limpa o áudio quando o componente é desmontado
     useEffect(() => {
@@ -148,10 +156,22 @@ function MixPlay() {
     return (
         <>
             <nav className="play-nav-bar">
+                <Link to="/mix"><TButton imgSrc={BackImage} Text="Back to Play Button"></TButton></Link>
                 <Link to="/">
                     <TButton imgSrc={IImage} Text="Home Button"></TButton>
                 </Link>
+                <TButton imgSrc={QButton} Text="Help Button" onClick={openHelp}></TButton>
             </nav>
+            {showHelp && (
+                <div className="help-modal-overlay" onClick={handleOverlayClick}>
+                    <div className="help-modal" onClick={handleModalClick}>
+                        <h2>Help</h2>
+                        <p>This is a mixer between all the musics of the program.</p>
+                        <p>Click on a transition to queue it and it will be applied when the options disappear.</p>
+                        <p>Click anywhere outside this window to close it.</p>
+                    </div>
+                </div>
+            )}
             <div className="play-container">
                 {currentVideo && (
                     <video ref={videoRef} src={currentVideo} controls className="video-player" />
