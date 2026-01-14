@@ -12,18 +12,34 @@ const audioDatabase = {
 // Estrutura de transições: songId -> tempo para transição -> array de opções
 const transitions = {
     'monster': {
-        15: [ // Aos 15s de 'monster'
-            { to: 'everything-stays', startTime: 20, label: 'Everything Stays' },
+        30: [ // Aos 15s de 'monster'
+            { to: 'everything-stays', startTime: 21, label: 'Everything Stays' },
+            { to: 'giant-woman', startTime: 22, label: 'Giant Woman' },
+        ],
+        45: [
+            {to: 'giant-woman', startTime: 0, label: 'Giant Woman'},
+        ],
+        84: [
+            {to: 'everything-stays', startTime: 0, label: 'Everything Stays'},
         ]
     },
     'everything-stays': {
-        30: [ // Aos 30s de 'everything-stays'
-            { to: 'giant-woman', startTime: 10, label: 'Giant Woman' },
-        ]
+        21: [ // Aos 30s de 'everything-stays'
+            { to: 'giant-woman', startTime: 35, label: 'Giant Woman' },
+            { to: 'monster', startTime: 69, label: 'Monster' },
+        ],
+        
     },
     'giant-woman': {
-        25: [ // Aos 25s de 'giant-woman'
-            { to: 'monster', startTime: 5, label: 'Monster' },
+        22: [ // Aos 25s de 'giant-woman'
+            { to: 'monster', startTime: 30, label: 'Monster' },
+            { to: 'monster', startTime: 45, label: 'Monster' },
+            { to: 'everything-stays', startTime: 0, label: 'Everything Stays' },
+        ],
+        35: [
+            { to: 'monster', startTime: 0, label: 'Monster' },
+            { to: 'monster', startTime: 84, label: 'Monster' },
+
         ]
     }
 };
@@ -37,6 +53,7 @@ export const TransitionProvider = ({ children }) => {
     const [currentSong, setCurrentSong] = useState(null);
     const [availableTransitions, setAvailableTransitions] = useState([]);
     const [showTransitions, setShowTransitions] = useState(false);
+    const [queuedTransition, setQueuedTransition] = useState(null);
 
     useEffect(() => {
         const audio = audioRef.current;
@@ -70,53 +87,46 @@ export const TransitionProvider = ({ children }) => {
         return () => audio.removeEventListener('timeupdate', timeUpdateHandler);
     }, [currentSong, showTransitions]);
 
-    const selectSong = useCallback((songId) => {
-        if (audioDatabase[songId]) {
-            setCurrentSong(songId);
-            const audio = audioRef.current;
-            audio.src = audioDatabase[songId];
-            
-            const playPromise = audio.play();
-            if (playPromise !== undefined) {
-                playPromise.then(() => {
-                    // A reprodução começou com sucesso, agora podemos definir o tempo.
-                    // Isto pode causar um pequeno salto, mas é mais fiável.
-                    audio.currentTime = 0;
-                }).catch(error => {
-                    console.error("Erro ao tentar tocar o áudio:", error);
-                    // Se a reprodução automática falhar, esperamos pelo evento canplay.
-                    audio.oncanplay = () => {
-                        audio.currentTime = 0;
-                        audio.oncanplay = null; // Limpa o handler
-                    };
-                });
-            }
+    const playSongAt = useCallback((songId, startTime = 0) => {
+        if (!audioDatabase[songId]) return;
+
+        setCurrentSong(songId);
+        const audio = audioRef.current;
+        audio.src = audioDatabase[songId];
+
+        const playPromise = audio.play();
+        if (playPromise !== undefined) {
+            playPromise.then(() => {
+                audio.currentTime = startTime;
+            }).catch(error => {
+                console.error('Erro ao tentar tocar o áudio:', error);
+                audio.oncanplay = () => {
+                    audio.currentTime = startTime;
+                    audio.oncanplay = null;
+                };
+            });
         }
     }, []);
+
+    const selectSong = useCallback((songId) => {
+        setQueuedTransition(null);
+        playSongAt(songId, 0);
+        setShowTransitions(false);
+        setAvailableTransitions([]);
+    }, [playSongAt]);
 
     const executeTransition = useCallback((to, startTime) => {
         if (audioDatabase[to]) {
-            setCurrentSong(to);
-            const audio = audioRef.current;
-            audio.src = audioDatabase[to];
-            
-            const playPromise = audio.play();
-            if (playPromise !== undefined) {
-                playPromise.then(() => {
-                    audio.currentTime = startTime;
-                }).catch(error => {
-                    console.error("Erro ao tentar tocar o áudio na transição:", error);
-                    audio.oncanplay = () => {
-                        audio.currentTime = startTime;
-                        audio.oncanplay = null; // Limpa o handler
-                    };
-                });
-            }
-
-            setShowTransitions(false);
-            setAvailableTransitions([]);
+            setQueuedTransition({ to, startTime });
         }
     }, []);
+
+    useEffect(() => {
+        if (!showTransitions && queuedTransition) {
+            playSongAt(queuedTransition.to, queuedTransition.startTime);
+            setQueuedTransition(null);
+        }
+    }, [showTransitions, queuedTransition, playSongAt]);
     
     const play = () => audioRef.current.play();
     const pause = () => audioRef.current.pause();
