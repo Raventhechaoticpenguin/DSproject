@@ -6,6 +6,9 @@ import './styling/App.css'
 import Play from './Play.jsx';
 import Mix from './Mix.jsx';
 import PlayMusic from './PlayMusic.jsx';
+import MixPlay from './MixPlay.jsx';
+import { AudioProvider } from './AudioContext.jsx';
+import { TransitionProvider } from './TransitionContext.jsx';
 
 function Home() {
   return (
@@ -31,12 +34,17 @@ function Home() {
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/play" element={<Play />} />
-      <Route path="/mix" element={<Mix />} />
-      <Route path="/playmusic/:musicId" element={<PlayMusic />} />
-    </Routes>
+    <AudioProvider>
+      <TransitionProvider>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/play" element={<Play />} />
+          <Route path="/mix" element={<Mix />} />
+          <Route path="/playmusic/:musicId" element={<PlayMusic />} />
+          <Route path="/mixplay/:musicId" element={<MixPlay />} />
+        </Routes>
+      </TransitionProvider>
+    </AudioProvider>
   );
 }
 
