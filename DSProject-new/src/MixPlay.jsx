@@ -2,8 +2,12 @@ import React, { useEffect, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useTransitions } from './TransitionContext';
 import './styling/PlayMusic.css';
+import './styling/musicsButton.css';
 import IImage from './assets/Buttons-house.png';
 import TButton from './Buttons/thingButtons.jsx';
+import TTButton from './Buttons/transitionButton.jsx';
+import buttonPlay from './assets/base.png'
+
 
 import monsterVideo from './assets/videos/monsterVid.mp4';
 import everythingStaysVideo from './assets/videos/ESVid.mp4';
@@ -155,11 +159,18 @@ function MixPlay() {
                 {showTransitions && (
                     <div className="transition-options">
                         <h3>Choose Next Song:</h3>
-                        {availableTransitions.map((transition, index) => (
-                            <button key={index} onClick={() => executeTransition(transition.to, transition.startTime)}>
-                                {transition.label}
-                            </button>
-                        ))}
+                        <div className="transition-buttons">
+                            {availableTransitions.map((transition, index) => (
+                                <TTButton
+                                    imgSrc={buttonPlay}
+                                    key={`${transition.to}-${transition.startTime}-${index}`}
+                                    Text={transition.label}
+                                    onClick={() => executeTransition(transition.to, transition.startTime)}
+                                >
+                                    {transition.label}
+                                </TTButton>
+                            ))}
+                        </div>
                     </div>
                 )}
             </div>

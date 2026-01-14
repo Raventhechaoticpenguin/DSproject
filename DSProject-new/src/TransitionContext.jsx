@@ -13,39 +13,39 @@ const audioDatabase = {
 const transitions = {
     'monster': {
         30: [ // Aos 15s de 'monster'
-            { to: 'everything-stays', startTime: 21, label: 'Everything Stays' },
-            { to: 'giant-woman', startTime: 22, label: 'Giant Woman' },
+            { to: 'everything-stays', startTime: 21, label: 'Everything Stays 2' },
+            { to: 'giant-woman', startTime: 22, label: 'Giant Woman 2' },
         ],
         45: [
-            {to: 'giant-woman', startTime: 0, label: 'Giant Woman'},
+            {to: 'giant-woman', startTime: 0, label: 'Giant Woman 1'},
         ],
         84: [
-            {to: 'everything-stays', startTime: 0, label: 'Everything Stays'},
+            {to: 'everything-stays', startTime: 0, label: 'Everything Stays 1'},
         ]
     },
     'everything-stays': {
         21: [ // Aos 30s de 'everything-stays'
-            { to: 'giant-woman', startTime: 35, label: 'Giant Woman' },
-            { to: 'monster', startTime: 69, label: 'Monster' },
+            { to: 'giant-woman', startTime: 35, label: 'Giant Woman 3' },
+            { to: 'monster', startTime: 69, label: 'Monster 4' },
         ],
         
     },
     'giant-woman': {
         22: [ // Aos 25s de 'giant-woman'
-            { to: 'monster', startTime: 30, label: 'Monster' },
-            { to: 'monster', startTime: 45, label: 'Monster' },
-            { to: 'everything-stays', startTime: 0, label: 'Everything Stays' },
+            { to: 'monster', startTime: 30, label: 'Monster 2' },
+            { to: 'monster', startTime: 45, label: 'Monster 3' },
+            { to: 'everything-stays', startTime: 0, label: 'Everything Stays 1' },
         ],
         35: [
-            { to: 'monster', startTime: 0, label: 'Monster' },
-            { to: 'monster', startTime: 84, label: 'Monster' },
+            { to: 'monster', startTime: 0, label: 'Monster 1' },
+            { to: 'monster', startTime: 84, label: 'Monster 5' },
 
         ]
     }
 };
 
 const TransitionContext = createContext();
-
+ 
 export const useTransitions = () => useContext(TransitionContext);
 
 export const TransitionProvider = ({ children }) => {
