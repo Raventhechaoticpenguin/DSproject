@@ -168,6 +168,7 @@ function MixPlay() {
                         <h2>Help</h2>
                         <p>This is a mixer between all the musics of the program.</p>
                         <p>Click on a transition to queue it and it will be applied when the options disappear.</p>
+                        <p>The last button being pushed determines the next transition.</p>
                         <p>Click anywhere outside this window to close it.</p>
                     </div>
                 </div>
