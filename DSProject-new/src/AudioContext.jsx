@@ -9,6 +9,9 @@ import monsterAllAudio from './assets/audios/MonsterWEverything.wav';
 import everythingStaysMusicAudio from './assets/audios/ESMusic.wav';
 import everythingStaysFoleyAudio from './assets/audios/ambienteES.wav';
 import everythingStaysAllAudio from './assets/audios/tudoES.wav';
+import gwMusicAudio from './assets/audios/GWCantada.wav';
+import gwFoleyAudio from './assets/audios/GWFoley.wav';
+import gwAllAudio from './assets/audios/GWAll.wav';
 
 const audioDatabase = {
     'monster': {
@@ -20,6 +23,11 @@ const audioDatabase = {
         all: everythingStaysAllAudio,
         music: everythingStaysMusicAudio,
         foley: everythingStaysFoleyAudio,
+    },
+    'giant-woman': {
+        all: gwAllAudio,
+        music: gwMusicAudio,
+        foley: gwFoleyAudio,
     }
 };
 
